@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lemon-Checkers | Элитная система античита</title>
+    <title>Lemon-Checkers | Премиум сканер читов</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #FFD700;
-            --platinum: #E5E4E2;
-            --diamond: #B9F2FF;
-            --obsidian: #0A0A0A;
-            --onyx: #1A1A1A;
-            --emerald: #50C878;
-            --ruby: #E0115F;
-            --sapphire: #0F52BA;
-            --gradient-primary: linear-gradient(135deg, var(--gold), var(--diamond));
-            --gradient-premium: linear-gradient(135deg, var(--gold), var(--emerald), var(--diamond));
+            --lemon-primary: #FFDD00;
+            --lemon-secondary: #FFED4E;
+            --lemon-dark: #FFB800;
+            --lemon-light: #FFF9CC;
+            --dark-bg: #0A0A0A;
+            --darker-bg: #050505;
+            --card-bg: rgba(25, 25, 20, 0.95);
+            --text-primary: #FFFFFF;
+            --text-secondary: #CCCCCC;
+            --accent-green: #39FF14;
+            --accent-purple: #8A2BE2;
+            --speed-blue: #0080FF;
+            --turbo-orange: #FF5500;
         }
 
         * {
@@ -27,64 +30,62 @@
         }
 
         body {
-            background: var(--obsidian);
-            color: var(--platinum);
-            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
             line-height: 1.6;
         }
 
-        .luxury-background {
+        .lemon-pattern {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(185, 242, 255, 0.05) 0%, transparent 50%),
-                linear-gradient(45deg, var(--obsidian) 0%, var(--onyx) 100%);
+                radial-gradient(circle at 20% 30%, rgba(255, 221, 0, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 237, 78, 0.03) 0%, transparent 50%);
+            pointer-events: none;
             z-index: -2;
         }
 
-        .particle-network {
+        .speed-lines {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: 
+                linear-gradient(90deg, transparent, rgba(0, 128, 255, 0.05), transparent),
+                linear-gradient(180deg, transparent, rgba(255, 85, 0, 0.05), transparent);
+            pointer-events: none;
             z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            background: var(--gold);
-            border-radius: 50%;
             opacity: 0.3;
-            animation: float 6s infinite ease-in-out;
+            animation: speedEffect 20s infinite linear;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        .header {
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 2rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        @keyframes speedEffect {
+            0% { background-position: 0% 0%, 0% 0%; }
+            100% { background-position: 100% 100%, 100% 100%; }
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 4rem;
+            padding: 0 60px;
+        }
+
+        .header {
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(30px);
+            padding: 2.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 221, 0, 0.2);
         }
 
         .nav {
@@ -94,19 +95,25 @@
         }
 
         .logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--lemon-primary), var(--lemon-dark));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
+            position: relative;
         }
 
         .logo::before {
-            content: '◈';
-            margin-right: 10px;
-            color: var(--gold);
+            content: '🍋';
+            margin-right: 15px;
+            font-size: 2.5rem;
+            animation: pulseLemon 2s infinite;
+        }
+
+        @keyframes pulseLemon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
         .hero {
@@ -114,51 +121,56 @@
             text-align: center;
         }
 
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
+        .hero-title {
             font-size: 4.5rem;
-            font-weight: 300;
+            font-weight: 700;
             margin-bottom: 2rem;
-            background: var(--gradient-premium);
+            background: linear-gradient(135deg, var(--lemon-primary), var(--speed-blue), var(--turbo-orange));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 3px;
+            line-height: 1.1;
         }
 
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--platinum);
-            margin-bottom: 3rem;
-            font-weight: 300;
-            letter-spacing: 1px;
+        .speed-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--speed-blue), var(--turbo-orange));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 2rem 0;
+            animation: pulseBadge 2s infinite;
+        }
+
+        @keyframes pulseBadge {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(0, 128, 255, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 85, 0, 0.4); }
         }
 
         .download-section {
-            background: rgba(26, 26, 26, 0.8);
+            background: var(--card-bg);
             padding: 4rem;
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 2px solid rgba(255, 221, 0, 0.2);
+            backdrop-filter: blur(25px);
             margin: 4rem auto;
             max-width: 700px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
         }
 
         .download-btn {
             display: inline-flex;
             align-items: center;
-            gap: 1.5rem;
-            background: var(--gradient-primary);
-            color: var(--obsidian);
+            gap: 1.2rem;
+            background: linear-gradient(135deg, var(--lemon-primary), var(--lemon-dark));
+            color: #000;
             text-decoration: none;
-            padding: 2rem 4rem;
-            border-radius: 100px;
-            font-size: 1.4rem;
+            padding: 1.8rem 4rem;
+            border-radius: 60px;
+            font-size: 1.3rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             border: 2px solid transparent;
             position: relative;
             overflow: hidden;
@@ -171,7 +183,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transform: rotate(45deg);
             animation: shine 3s infinite;
         }
@@ -182,53 +194,36 @@
         }
 
         .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
-        }
-
-        .security-notice {
-            background: rgba(224, 17, 95, 0.1);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            border: 1px solid var(--ruby);
-            margin: 2rem 0;
-            text-align: left;
-        }
-
-        .security-notice h3 {
-            color: var(--ruby);
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px rgba(255, 221, 0, 0.3);
         }
 
         .features {
             padding: 8rem 0;
-            background: linear-gradient(180deg, var(--onyx), var(--obsidian));
         }
 
         .section-title {
-            font-size: 3.5rem;
             text-align: center;
+            font-size: 3.5rem;
             margin-bottom: 5rem;
-            font-weight: 300;
-            color: var(--platinum);
+            color: var(--lemon-primary);
+            font-weight: 600;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: 3rem;
         }
 
         .feature-card {
-            background: rgba(26, 26, 26, 0.6);
+            background: var(--card-bg);
             padding: 3rem;
-            border-radius: 1.5rem;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 221, 0, 0.15);
+            transition: all 0.4s ease;
+            text-align: center;
+            backdrop-filter: blur(15px);
             position: relative;
             overflow: hidden;
         }
@@ -238,156 +233,208 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--gradient-primary);
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--lemon-primary), var(--lemon-dark));
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
+            transform: translateY(-8px);
+            border-color: var(--lemon-primary);
+            box-shadow: 0 20px 40px rgba(255, 221, 0, 0.2);
         }
 
         .feature-icon {
             font-size: 3.5rem;
+            color: var(--lemon-primary);
             margin-bottom: 2rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            transition: transform 0.4s ease;
         }
 
-        .feature-card h3 {
-            font-size: 1.8rem;
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-title {
+            font-size: 1.6rem;
             margin-bottom: 1.5rem;
-            color: var(--platinum);
+            color: var(--text-primary);
+            font-weight: 600;
         }
 
-        .feature-card p {
-            color: #ccc;
-            line-height: 1.8;
+        .feature-desc {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 1.1rem;
         }
 
-        .how-to {
+        .speed-features {
             padding: 8rem 0;
-            background: var(--obsidian);
+            background: rgba(0, 0, 0, 0.2);
         }
 
-        .steps {
+        .speed-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 5rem;
+            gap: 2.5rem;
         }
 
-        .step {
-            background: rgba(26, 26, 26, 0.8);
-            padding: 3rem;
-            border-radius: 1.5rem;
-            border: 1px solid rgba(255, 215, 0, 0.1);
+        .speed-item {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 18px;
+            border-left: 4px solid var(--speed-blue);
+            backdrop-filter: blur(15px);
             text-align: center;
-            position: relative;
         }
 
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-primary);
-            color: var(--obsidian);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
+        .speed-number {
+            font-size: 3rem;
             font-weight: 700;
-            margin: -60px auto 2rem;
-            position: relative;
-            z-index: 2;
+            background: linear-gradient(135deg, var(--speed-blue), var(--turbo-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
         }
 
-        .antivirus-section {
+        .speed-label {
+            color: var(--lemon-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .performance {
             padding: 8rem 0;
-            background: linear-gradient(135deg, var(--onyx), var(--obsidian));
         }
 
-        .antivirus-content {
-            background: rgba(26, 26, 26, 0.8);
-            padding: 4rem;
-            border-radius: 2rem;
-            border: 1px solid var(--sapphire);
-            max-width: 1000px;
-            margin: 0 auto;
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
         }
 
-        .antivirus-content h2 {
-            color: var(--sapphire);
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+        .performance-item {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 128, 255, 0.2);
             text-align: center;
         }
 
-        .footer {
-            background: var(--onyx);
-            padding: 4rem 0 2rem;
+        .performance-icon {
+            font-size: 3rem;
+            color: var(--speed-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .comparison {
+            padding: 8rem 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .comparison-item {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
             text-align: center;
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .lemon-badge {
+            background: linear-gradient(135deg, var(--lemon-primary), var(--lemon-dark));
+            color: #000;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .competitor-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: inline-block;
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 0 2rem;
+            .hero-title {
+                font-size: 3.2rem;
             }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
+            
             .download-btn {
                 padding: 1.5rem 3rem;
                 font-size: 1.2rem;
             }
-
+            
+            .container {
+                padding: 0 30px;
+            }
+            
             .section-title {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="luxury-background"></div>
-    <div class="particle-network" id="particleNetwork"></div>
+    <div class="lemon-pattern"></div>
+    <div class="speed-lines"></div>
 
     <header class="header">
         <div class="container">
             <nav class="nav">
-                <div class="logo">LEMON-CHECKERS</div>
+                <div class="logo">Lemon-Checkers</div>
             </nav>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Lemon-Checkers</h1>
-                <p class="hero-subtitle">Элитная система обнаружения и предотвращения нечестной игры</p>
-                
-                <div class="download-section">
-                    <a href="lemon-checker.exe" class="download-btn" download>
-                        <i class="fas fa-download"></i>
-                        СКАЧАТЬ ПРОГРАММУ
-                    </a>
-                    
-                    <div class="security-notice">
-                        <h3>
-                            <i class="fas fa-shield-alt"></i>
-                            ВАЖНО: Антивирусная система
-                        </h3>
-                        <p>Lemon-Checkers использует технологии глубокого анализа на уровне ядра Windows, что может вызывать реакции антивирусных систем.</p>
-                        <p style="margin-top: 1rem; color: var(--gold);">
-                            <i class="fas fa-exclamation-circle"></i>
-                            Рекомендуется временно отключить антивирус для полного доступа к системным файлам
-                        </p>
-                    </div>
+            <h1 class="hero-title">Максимальная скорость поиска читов</h1>
+            
+            <div class="speed-badge">
+                ⚡ В 10 раз быстрее аналогов
+            </div>
+
+            <div class="download-section">
+                <a href="Lemon-Checkers.exe" class="download-btn" download>
+                    <i class="fas fa-download"></i>
+                    Скачать сверхбыстрый сканер
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="speed-features">
+        <div class="container">
+            <h2 class="section-title">Скоростные показатели</h2>
+            <div class="speed-grid">
+                <div class="speed-item">
+                    <div class="speed-number">0.8с</div>
+                    <div class="speed-label">Сканирование 10,000 файлов</div>
+                    <p>Мгновенный анализ тысяч файлов одновременно</p>
+                </div>
+
+                <div class="speed-item">
+                    <div class="speed-number">2.1с</div>
+                    <div class="speed-label">Полная проверка системы</div>
+                    <p>Быстрее, чем запускается большинство приложений</p>
+                </div>
+
+                <div class="speed-item">
+                    <div class="speed-number">0.05с</div>
+                    <div class="speed-label">Реакция на изменения</div>
+                    <p>Мгновенное обнаружение новых файлов</p>
                 </div>
             </div>
         </div>
@@ -395,172 +442,134 @@
 
     <section class="features">
         <div class="container">
-            <h2 class="section-title">ПРЕМИУМ ВОЗМОЖНОСТИ</h2>
-            
+            <h2 class="section-title">Технологии скорости</h2>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>Искусственный интеллект</h3>
-                    <p>Передовые нейросети для обнаружения даже самых сложных и замаскированных читов</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-virus"></i>
-                    </div>
-                    <h3>Защита нулевого дня</h3>
-                    <p>Обнаружение неизвестных угроз до их появления в базах сигнатур</p>
-                </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
-                    <h3>Мгновенный анализ</h3>
-                    <p>Проверка системы за секунды без потери производительности</p>
+                    <h3 class="feature-title">Многопоточное сканирование</h3>
+                    <p class="feature-desc">Использование всех ядер процессора для параллельной обработки тысяч файлов одновременно</p>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-database"></i>
+                        <i class="fas fa-memory"></i>
                     </div>
-                    <h3>Облачные базы</h3>
-                    <p>Ежесекундное обновление баз данных с миллионами сигнатур</p>
+                    <h3 class="feature-title">Оптимизированная память</h3>
+                    <p class="feature-desc">Эффективное использование RAM с минимальной нагрузкой на систему</p>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-user-secret"></i>
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    <h3>Стелс-режим</h3>
-                    <p>Невидимая работа в системе без следов для античит-систем</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Детальная аналитика</h3>
-                    <p>Полные отчеты с графиками и доказательной базой</p>
+                    <h3 class="feature-title">Turbo-режим</h3>
+                    <p class="feature-desc">Эксклюзивный алгоритм ускоренного поиска с приоритетом системных ресурсов</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="how-to">
+    <section class="performance">
         <div class="container">
-            <h2 class="section-title">ЭКСКЛЮЗИВНАЯ ИНСТАЛЛЯЦИЯ</h2>
-            
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Загрузка</h3>
-                    <p>Скачайте дистрибутив через защищенное соединение</p>
+            <h2 class="section-title">Производительность</h2>
+            <div class="performance-grid">
+                <div class="performance-item">
+                    <div class="performance-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Загрузка CPU: < 2%</h3>
+                    <p>Минимальное использование процессора даже при полном сканировании</p>
                 </div>
-                
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Безопасность</h3>
-                    <p>Временно отключите антивирус для установки</p>
+
+                <div class="performance-item">
+                    <div class="performance-icon">
+                        <i class="fas fa-memory"></i>
+                    </div>
+                    <h3>Память: 15MB RAM</h3>
+                    <p>Ультра-оптимизированное потребление оперативной памяти</p>
                 </div>
-                
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Установка</h3>
-                    <p>Запустите установщик с правами администратора</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Активация</h3>
-                    <p>Наслаждайтесь премиум-функционалом</p>
+
+                <div class="performance-item">
+                    <div class="performance-icon">
+                        <i class="fas fa-hdd"></i>
+                    </div>
+                    <h3>Диск: 0.1ms задержка</h3>
+                    <p>Мгновенный доступ к файловой системе без тормозов</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="antivirus-section">
+    <section class="comparison">
         <div class="container">
-            <div class="antivirus-content">
-                <h2>
-                    <i class="fas fa-exclamation-triangle"></i>
-                    ПОЧЕМУ АНТИВИРУС МОЖЕТ РЕАГИРОВАТЬ
-                </h2>
-                
-                <p>Lemon-Checkers использует эксклюзивные технологии, которые требуют глубокого доступа к системе:</p>
-                
-                <ul style="margin: 2rem 0; padding-left: 2rem;">
-                    <li style="margin-bottom: 1rem;">Анализ защищенных процессов ядра Windows</li>
-                    <li style="margin-bottom: 1rem;">Мониторинг системных вызовов в реальном времени</li>
-                    <li style="margin-bottom: 1rem;">Проверка цифровых подписей драйверов</li>
-                    <li style="margin-bottom: 1rem;">Сканирование памяти на уровне гипервизора</li>
-                </ul>
-                
-                <p style="color: var(--emerald); font-style: italic;">
-                    "Эти операции необходимы для обеспечения максимальной эффективности против современных читов"
-                </p>
+            <h2 class="section-title">Сравнение скорости</h2>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <div class="lemon-badge">Lemon-Checkers</div>
+                    <h3>Полное сканирование: 2.1 секунды</h3>
+                    <p>✅ Мгновенный старт<br>✅ Параллельная обработка<br>✅ Нулевая нагрузка</p>
+                </div>
+
+                <div class="comparison-item">
+                    <div class="competitor-badge">Обычные сканеры</div>
+                    <h3>Полное сканирование: 20-30 секунд</h3>
+                    <p>❌ Медленный запуск<br>❌ Последовательная обработка<br>❌ Высокая нагрузка</p>
+                </div>
             </div>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <div class="logo" style="margin-bottom: 2rem;">LEMON-CHECKERS</div>
-            
-            <p style="color: #666; margin-bottom: 2rem;">
-                Элитная система защиты от нечестной игры | Только для Windows 10/11
-            </p>
-            
-            <p style="color: #444;">
-                © 2024 Lemon-Checkers. Все права защищены.<br>
-                Премиум технологии для премиум гейминга.
+            <p style="font-size: 2rem; margin-bottom: 2rem;">🍋</p>
+            <p>&copy; 2024 Lemon-Checkers. Самый быстрый сканер читов.</p>
+            <p style="margin-top: 1rem; color: var(--text-secondary);">
+                Скорость, которая меняет правила игры
             </p>
         </div>
     </footer>
 
     <script>
-        // Создание частиц для фона
-        function createParticles() {
-            const container = document.getElementById('particleNetwork');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                const size = Math.random() * 8 + 2;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                const delay = Math.random() * 4;
-                const duration = Math.random() * 4 + 3;
-                
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}%`;
-                particle.style.top = `${posY}%`;
-                particle.style.animationDelay = `${delay}s`;
-                particle.style.animationDuration = `${duration}s`;
-                
-                container.appendChild(particle);
-            }
-        }
-
-        // Плавное появление элементов
+        // Анимация для элементов скорости
         document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.style.opacity = 1;
                         entry.target.style.transform = 'translateY(0)';
+                        
+                        // Анимация для цифр скорости
+                        if (entry.target.querySelector('.speed-number')) {
+                            const numbers = entry.target.querySelectorAll('.speed-number');
+                            numbers.forEach(num => {
+                                let finalValue = parseFloat(num.textContent);
+                                let startValue = 0;
+                                let duration = 2000;
+                                let startTime = null;
+                                
+                                function animateNumber(timestamp) {
+                                    if (!startTime) startTime = timestamp;
+                                    const progress = Math.min((timestamp - startTime) / duration, 1);
+                                    const value = startValue + progress * (finalValue - startValue);
+                                    num.textContent = value.toFixed(1) + 'с';
+                                    
+                                    if (progress < 1) {
+                                        requestAnimationFrame(animateNumber);
+                                    }
+                                }
+                                
+                                requestAnimationFrame(animateNumber);
+                            });
+                        }
                     }
                 });
             }, { threshold: 0.1 });
             
-            document.querySelectorAll('.feature-card, .step').forEach(el => {
+            document.querySelectorAll('.feature-card, .speed-item, .performance-item, .comparison-item').forEach(el => {
                 el.style.opacity = 0;
-                el.style.transform = 'translateY(50px)';
+                el.style.transform = 'translateY(60px)';
                 el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                 observer.observe(el);
             });
