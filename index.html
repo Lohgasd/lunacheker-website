@@ -3,180 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lemon-Checkers - Профессиональная проверка читов</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Lemon-Checkers | Элитная система античита</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --gold: #FFD700;
+            --platinum: #E5E4E2;
+            --diamond: #B9F2FF;
+            --obsidian: #0A0A0A;
+            --onyx: #1A1A1A;
+            --emerald: #50C878;
+            --ruby: #E0115F;
+            --sapphire: #0F52BA;
+            --gradient-primary: linear-gradient(135deg, var(--gold), var(--diamond));
+            --gradient-premium: linear-gradient(135deg, var(--gold), var(--emerald), var(--diamond));
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        :root {
-            --neon-yellow: #ffdd40;
-            --neon-blue: #00f3ff;
-            --neon-pink: #ff00ff;
-            --neon-green: #39ff14;
-            --dark-space: #0a0a1a;
-            --deep-space: #12122a;
-            --cosmic-purple: #6a0dad;
-            --matrix-green: #00ff41;
-        }
-        
+
         body {
-            background: linear-gradient(135deg, var(--dark-space), var(--deep-space));
-            color: #ffffff;
-            font-family: 'Roboto', sans-serif;
+            background: var(--obsidian);
+            color: var(--platinum);
+            font-family: 'Inter', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
             line-height: 1.6;
         }
-        
-        .cyber-globe {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at center, rgba(0, 243, 255, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-            animation: pulse 8s infinite alternate;
-        }
-        
-        @keyframes pulse {
-            0% { opacity: 0.3; }
-            100% { opacity: 0.7; }
-        }
-        
-        .cyber-grid {
+
+        .luxury-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(185, 242, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(45deg, var(--obsidian) 0%, var(--onyx) 100%);
+            z-index: -2;
+        }
+
+        .particle-network {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
         }
-        
+
+        .particle {
+            position: absolute;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
         .header {
-            background: rgba(10, 10, 26, 0.95);
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
-            padding: 1.5rem 0;
+            padding: 2rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid var(--neon-yellow);
-            box-shadow: 0 0 30px rgba(255, 221, 64, 0.3);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
         }
-        
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 4rem;
         }
-        
+
         .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-family: 'Orbitron', monospace;
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--neon-yellow);
-            text-shadow: 0 0 20px rgba(255, 221, 64, 0.7);
-        }
-        
-        .logo::before {
-            content: '⟁';
+            font-family: 'JetBrains Mono', monospace;
             font-size: 2.5rem;
-            animation: rotate 4s linear infinite;
-        }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .hero {
-            padding: 180px 0 100px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero h1 {
-            font-family: 'Orbitron', monospace;
-            font-size: 5rem;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, var(--neon-yellow), var(--neon-blue), var(--neon-pink));
+            font-weight: 700;
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 50px rgba(255, 0, 255, 0.5);
-            animation: glow 2s ease-in-out infinite alternate;
+            letter-spacing: 2px;
         }
-        
-        @keyframes glow {
-            from { text-shadow: 0 0 20px rgba(255, 0, 255, 0.5); }
-            to { text-shadow: 0 0 40px rgba(0, 243, 255, 0.7), 0 0 70px rgba(255, 0, 255, 0.5); }
+
+        .logo::before {
+            content: '◈';
+            margin-right: 10px;
+            color: var(--gold);
         }
-        
-        .hero p {
-            font-size: 1.5rem;
-            max-width: 800px;
-            margin: 0 auto 50px;
-            color: #ccccff;
-            line-height: 1.8;
+
+        .hero {
+            padding: 200px 0 100px;
+            text-align: center;
         }
-        
-        .download-section {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 40px;
-            border-radius: 25px;
-            border: 3px solid var(--neon-yellow);
-            box-shadow: 0 0 50px rgba(255, 221, 64, 0.4);
-            backdrop-filter: blur(15px);
+
+        .hero-content {
             max-width: 800px;
             margin: 0 auto;
         }
-        
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            background: var(--gradient-premium);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 3px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--platinum);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .download-section {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 4rem;
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(20px);
+            margin: 4rem auto;
+            max-width: 700px;
+        }
+
         .download-btn {
             display: inline-flex;
             align-items: center;
-            gap: 15px;
-            background: linear-gradient(135deg, var(--neon-yellow), var(--neon-pink));
-            color: #000;
+            gap: 1.5rem;
+            background: var(--gradient-primary);
+            color: var(--obsidian);
             text-decoration: none;
-            padding: 25px 60px;
-            border-radius: 60px;
+            padding: 2rem 4rem;
+            border-radius: 100px;
             font-size: 1.4rem;
-            font-weight: bold;
-            font-family: 'Orbitron', monospace;
+            font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 0 30px rgba(255, 221, 64, 0.6);
-            margin: 20px 0;
             border: 2px solid transparent;
             position: relative;
             overflow: hidden;
         }
-        
+
         .download-btn::before {
             content: '';
             position: absolute;
@@ -184,181 +171,182 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             transform: rotate(45deg);
             animation: shine 3s infinite;
         }
-        
+
         @keyframes shine {
             0% { left: -50%; }
             100% { left: 150%; }
         }
-        
+
         .download-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 0 50px rgba(255, 221, 64, 0.8), 0 0 80px rgba(255, 0, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
         }
-        
-        .antivirus-warning {
-            background: rgba(255, 107, 107, 0.2);
-            padding: 30px;
-            border-radius: 20px;
-            border: 2px solid #ff6b6b;
-            margin: 30px 0;
+
+        .security-notice {
+            background: rgba(224, 17, 95, 0.1);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            border: 1px solid var(--ruby);
+            margin: 2rem 0;
             text-align: left;
         }
-        
-        .antivirus-warning h3 {
-            color: #ff6b6b;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+
+        .security-notice h3 {
+            color: var(--ruby);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 1rem;
         }
-        
+
         .features {
-            padding: 100px 0;
-            background: linear-gradient(180deg, var(--deep-space), #080818);
+            padding: 8rem 0;
+            background: linear-gradient(180deg, var(--onyx), var(--obsidian));
         }
-        
+
         .section-title {
-            text-align: center;
-            font-family: 'Orbitron', monospace;
             font-size: 3.5rem;
-            margin-bottom: 80px;
-            color: var(--neon-blue);
-            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            text-align: center;
+            margin-bottom: 5rem;
+            font-weight: 300;
+            color: var(--platinum);
         }
-        
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
         }
-        
+
         .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 25px;
-            text-align: center;
-            backdrop-filter: blur(15px);
-            border: 2px solid transparent;
-            background-clip: padding-box;
-            position: relative;
+            background: rgba(26, 26, 26, 0.6);
+            padding: 3rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
             transition: all 0.3s ease;
+            position: relative;
             overflow: hidden;
         }
-        
+
         .feature-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--neon-yellow), var(--neon-pink));
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-primary);
         }
-        
+
         .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 40px rgba(0, 243, 255, 0.3);
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
         }
-        
+
         .feature-icon {
-            font-size: 4rem;
-            color: var(--neon-yellow);
-            margin-bottom: 25px;
-            text-shadow: 0 0 20px rgba(255, 221, 64, 0.5);
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
+
         .feature-card h3 {
             font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--neon-green);
-            font-family: 'Orbitron', monospace;
+            margin-bottom: 1.5rem;
+            color: var(--platinum);
         }
-        
+
+        .feature-card p {
+            color: #ccc;
+            line-height: 1.8;
+        }
+
         .how-to {
-            padding: 100px 0;
-            background: linear-gradient(180deg, #080818, var(--dark-space));
+            padding: 8rem 0;
+            background: var(--obsidian);
         }
-        
+
         .steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 5rem;
         }
-        
+
         .step {
-            background: rgba(0, 243, 255, 0.1);
-            padding: 40px 30px;
-            border-radius: 20px;
+            background: rgba(26, 26, 26, 0.8);
+            padding: 3rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
             text-align: center;
-            border: 2px solid var(--neon-blue);
             position: relative;
         }
-        
+
         .step-number {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--neon-yellow), var(--neon-pink));
-            color: #000;
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            color: var(--obsidian);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
-            font-weight: bold;
-            font-family: 'Orbitron', monospace;
-            margin: -60px auto 25px;
+            font-weight: 700;
+            margin: -60px auto 2rem;
             position: relative;
             z-index: 2;
-            box-shadow: 0 0 30px rgba(255, 221, 64, 0.5);
         }
-        
-        .security-section {
-            padding: 100px 0;
-            background: rgba(0, 0, 0, 0.8);
+
+        .antivirus-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--onyx), var(--obsidian));
         }
-        
-        .security-content {
+
+        .antivirus-content {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 4rem;
+            border-radius: 2rem;
+            border: 1px solid var(--sapphire);
             max-width: 1000px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 50px;
-            border-radius: 25px;
-            border: 3px solid var(--matrix-green);
-            box-shadow: 0 0 50px rgba(0, 255, 65, 0.3);
         }
-        
-        .footer {
-            background: #000;
-            padding: 60px 0 30px;
+
+        .antivirus-content h2 {
+            color: var(--sapphire);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
             text-align: center;
-            border-top: 3px solid var(--neon-yellow);
         }
-        
+
+        .footer {
+            background: var(--onyx);
+            padding: 4rem 0 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
         @media (max-width: 768px) {
             .container {
-                padding: 0 20px;
+                padding: 0 2rem;
             }
-            
+
             .hero h1 {
                 font-size: 3rem;
             }
-            
-            .hero p {
+
+            .download-btn {
+                padding: 1.5rem 3rem;
                 font-size: 1.2rem;
             }
-            
-            .download-btn {
-                padding: 20px 40px;
-                font-size: 1.1rem;
-            }
-            
+
             .section-title {
                 font-size: 2.5rem;
             }
@@ -366,8 +354,8 @@
     </style>
 </head>
 <body>
-    <div class="cyber-globe"></div>
-    <div class="cyber-grid"></div>
+    <div class="luxury-background"></div>
+    <div class="particle-network" id="particleNetwork"></div>
 
     <header class="header">
         <div class="container">
@@ -381,36 +369,25 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Lemon-Checkers</h1>
-                <p>Профессиональная система обнаружения и анализа читов нового поколения. Передовые алгоритмы для защиты вашего геймплея.</p>
+                <p class="hero-subtitle">Элитная система обнаружения и предотвращения нечестной игры</p>
                 
                 <div class="download-section">
                     <a href="lemon-checker.exe" class="download-btn" download>
                         <i class="fas fa-download"></i>
-                        СКАЧАТЬ LEMON-CHECKERS v2.1.4
+                        СКАЧАТЬ ПРОГРАММУ
                     </a>
                     
-                    <div class="antivirus-warning">
+                    <div class="security-notice">
                         <h3>
                             <i class="fas fa-shield-alt"></i>
-                            ВАЖНО: Антивирусная защита
+                            ВАЖНО: Антивирусная система
                         </h3>
-                        <p>Lemon-Checkers использует глубокий анализ системных файлов Windows, что может вызывать ложные срабатывания антивирусов.</p>
-                        <p><strong>Перед запуском:</strong></p>
-                        <ul style="margin-left: 20px; margin-top: 10px;">
-                            <li>Отключите антивирус на время проверки</li>
-                            <li>Добавьте программу в исключения</li>
-                            <li>Разрешите доступ к системным файлам</li>
-                        </ul>
-                        <p style="margin-top: 15px; color: var(--neon-yellow);">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            Это необходимо для корректной работы глубокого сканирования!
+                        <p>Lemon-Checkers использует технологии глубокого анализа на уровне ядра Windows, что может вызывать реакции антивирусных систем.</p>
+                        <p style="margin-top: 1rem; color: var(--gold);">
+                            <i class="fas fa-exclamation-circle"></i>
+                            Рекомендуется временно отключить антивирус для полного доступа к системным файлам
                         </p>
                     </div>
-                    
-                    <p style="color: #ccc; margin-top: 20px;">
-                        <i class="fas fa-info-circle"></i>
-                        Размер: 18.7MB | Версия: 2.1.4 | Совместимость: Windows 10/11
-                    </p>
                 </div>
             </div>
         </div>
@@ -418,55 +395,55 @@
 
     <section class="features">
         <div class="container">
-            <h2 class="section-title">ВОЗМОЖНОСТИ СИСТЕМЫ</h2>
+            <h2 class="section-title">ПРЕМИУМ ВОЗМОЖНОСТИ</h2>
             
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-microchip"></i>
-                    </div>
-                    <h3>Глубокий анализ памяти</h3>
-                    <p>Реальное сканирование оперативной памяти и процессов в режиме ядра</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Сигнатурный анализ</h3>
-                    <p>Обнаружение известных читов по уникальным сигнатурам кода</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
                         <i class="fas fa-brain"></i>
                     </div>
-                    <h3>ИИ обнаружение</h3>
-                    <p>Искусственный интеллект для выявления новых, неизвестных читов</p>
+                    <h3>Искусственный интеллект</h3>
+                    <p>Передовые нейросети для обнаружения даже самых сложных и замаскированных читов</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-shield-virus"></i>
                     </div>
-                    <h3>Защита от обхода</h3>
-                    <p>Система противодействия попыткам скрытия читов</p>
+                    <h3>Защита нулевого дня</h3>
+                    <p>Обнаружение неизвестных угроз до их появления в базах сигнатур</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-file-alt"></i>
+                        <i class="fas fa-tachometer-alt"></i>
                     </div>
-                    <h3>Детальные отчеты</h3>
-                    <p>Полная документация с доказательствами обнаружения</p>
+                    <h3>Мгновенный анализ</h3>
+                    <p>Проверка системы за секунды без потери производительности</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-sync-alt"></i>
+                        <i class="fas fa-database"></i>
                     </div>
-                    <h3>Автообновление</h3>
-                    <p>Ежедневное обновление баз данных сигнатур</p>
+                    <h3>Облачные базы</h3>
+                    <p>Ежесекундное обновление баз данных с миллионами сигнатур</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h3>Стелс-режим</h3>
+                    <p>Невидимая работа в системе без следов для античит-систем</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Детальная аналитика</h3>
+                    <p>Полные отчеты с графиками и доказательной базой</p>
                 </div>
             </div>
         </div>
@@ -474,59 +451,55 @@
 
     <section class="how-to">
         <div class="container">
-            <h2 class="section-title">КАК ИСПОЛЬЗОВАТЬ</h2>
+            <h2 class="section-title">ЭКСКЛЮЗИВНАЯ ИНСТАЛЛЯЦИЯ</h2>
             
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Скачайте и установите</h3>
-                    <p>Загрузите программу и запустите установщик</p>
+                    <h3>Загрузка</h3>
+                    <p>Скачайте дистрибутив через защищенное соединение</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>Отключите антивирус</h3>
-                    <p>Временно отключите защиту для полного доступа</p>
+                    <h3>Безопасность</h3>
+                    <p>Временно отключите антивирус для установки</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>Запустите сканирование</h3>
-                    <p>Выберите режим проверки и запустите анализ</p>
+                    <h3>Установка</h3>
+                    <p>Запустите установщик с правами администратора</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">4</div>
-                    <h3>Получите отчет</h3>
-                    <p>Просмотрите детальные результаты проверки</p>
+                    <h3>Активация</h3>
+                    <p>Наслаждайтесь премиум-функционалом</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="security-section">
+    <section class="antivirus-section">
         <div class="container">
-            <div class="security-content">
-                <h2 style="text-align: center; color: var(--matrix-green); font-family: 'Orbitron'; margin-bottom: 30px;">
-                    <i class="fas fa-lock"></i>
-                    БЕЗОПАСНОСТЬ И КОНФИДЕНЦИАЛЬНОСТЬ
+            <div class="antivirus-content">
+                <h2>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    ПОЧЕМУ АНТИВИРУС МОЖЕТ РЕАГИРОВАТЬ
                 </h2>
                 
-                <p>Lemon-Checkers работает на уровне ядра Windows для обеспечения максимальной эффективности. Это требует особых разрешений:</p>
+                <p>Lemon-Checkers использует эксклюзивные технологии, которые требуют глубокого доступа к системе:</p>
                 
-                <div style="margin: 30px 0;">
-                    <h4 style="color: var(--neon-yellow); margin-bottom: 15px;">Требуемые доступы:</h4>
-                    <ul style="margin-left: 20px;">
-                        <li>Чтение системных файлов и реестра</li>
-                        <li>Мониторинг процессов и памяти</li>
-                        <li>Анализ сетевой активности</li>
-                        <li>Доступ к аппаратным данным</li>
-                    </ul>
-                </div>
+                <ul style="margin: 2rem 0; padding-left: 2rem;">
+                    <li style="margin-bottom: 1rem;">Анализ защищенных процессов ядра Windows</li>
+                    <li style="margin-bottom: 1rem;">Мониторинг системных вызовов в реальном времени</li>
+                    <li style="margin-bottom: 1rem;">Проверка цифровых подписей драйверов</li>
+                    <li style="margin-bottom: 1rem;">Сканирование памяти на уровне гипервизора</li>
+                </ul>
                 
-                <p style="color: var(--neon-blue);">
-                    <i class="fas fa-info-circle"></i>
-                    Все данные обрабатываются локально и никуда не передаются. Программа не содержит spyware и malware.
+                <p style="color: var(--emerald); font-style: italic;">
+                    "Эти операции необходимы для обеспечения максимальной эффективности против современных читов"
                 </p>
             </div>
         </div>
@@ -534,25 +507,48 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="logo" style="justify-content: center; margin-bottom: 30px;">
-                LEMON-CHECKERS
-            </div>
+            <div class="logo" style="margin-bottom: 2rem;">LEMON-CHECKERS</div>
             
-            <p style="color: #ccc; margin-bottom: 20px;">
-                Профессиональная система защиты от нечестной игры
+            <p style="color: #666; margin-bottom: 2rem;">
+                Элитная система защиты от нечестной игры | Только для Windows 10/11
             </p>
             
-            <p style="color: #666;">
+            <p style="color: #444;">
                 © 2024 Lemon-Checkers. Все права защищены.<br>
-                Windows является зарегистрированным товарным знаком Microsoft Corporation.
+                Премиум технологии для премиум гейминга.
             </p>
         </div>
     </footer>
 
     <script>
-        // Простые анимации без ошибок
+        // Создание частиц для фона
+        function createParticles() {
+            const container = document.getElementById('particleNetwork');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 8 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 4;
+                const duration = Math.random() * 4 + 3;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Плавное появление элементов
         document.addEventListener('DOMContentLoaded', function() {
-            // Анимация появления элементов
+            createParticles();
+            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -562,21 +558,12 @@
                 });
             }, { threshold: 0.1 });
             
-            // Наблюдаем за карточками
-            document.querySelectorAll('.feature-card, .step').forEach(card => {
-                card.style.opacity = 0;
-                card.style.transform = 'translateY(50px)';
-                card.style.transition = 'all 0.8s ease';
-                observer.observe(card);
+            document.querySelectorAll('.feature-card, .step').forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(50px)';
+                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                observer.observe(el);
             });
-            
-            // Интерактивность для предупреждения
-            const warning = document.querySelector('.antivirus-warning');
-            if (warning) {
-                warning.addEventListener('click', function() {
-                    this.style.transform = this.style.transform === 'scale(1.02)' ? 'scale(1)' : 'scale(1.02)';
-                });
-            }
         });
     </script>
 </body>
