@@ -10,14 +10,15 @@
         :root {
             --dark-bg: #0a0a0a;
             --darker-bg: #050505;
-            --card-bg: #1a1a1a;
-            --border-color: #2a2a2a;
+            --card-bg: rgba(26, 26, 26, 0.95);
+            --border-color: rgba(255, 255, 255, 0.1);
             --text-primary: #ffffff;
-            --text-secondary: #888888;
+            --text-secondary: #cccccc;
             --accent: #00d4ff;
             --warning: #ffaa00;
             --success: #00cc88;
             --danger: #ff4444;
+            --lemon: #ffdd00;
         }
 
         * {
@@ -27,12 +28,157 @@
         }
 
         body {
-            background: var(--dark-bg);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
             line-height: 1.6;
             font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        .background-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .gradient-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 170, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(57, 255, 20, 0.05) 0%, transparent 50%);
+        }
+
+        .floating-lemons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .lemon-float {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.1;
+            animation: floatLemon 20s infinite linear;
+        }
+
+        @keyframes floatLemon {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.1;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at center, black 20%, transparent 80%);
+        }
+
+        .glowing-orbs {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: pulseOrb 4s infinite alternate;
+        }
+
+        .orb-1 {
+            top: 10%;
+            left: 5%;
+            background: rgba(0, 212, 255, 0.2);
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            top: 70%;
+            right: 10%;
+            background: rgba(255, 170, 0, 0.15);
+            animation-delay: 0.5s;
+        }
+
+        .orb-3 {
+            bottom: 15%;
+            left: 15%;
+            background: rgba(57, 255, 20, 0.12);
+            animation-delay: 1s;
+        }
+
+        .orb-4 {
+            top: 30%;
+            right: 20%;
+            background: rgba(255, 68, 68, 0.1);
+            animation-delay: 1.5s;
+        }
+
+        .orb-5 {
+            top: 60%;
+            left: 25%;
+            background: rgba(128, 0, 255, 0.15);
+            animation-delay: 2s;
+        }
+
+        .orb-6 {
+            bottom: 40%;
+            right: 30%;
+            background: rgba(255, 105, 180, 0.1);
+            animation-delay: 2.5s;
+        }
+
+        .orb-7 {
+            top: 20%;
+            left: 40%;
+            background: rgba(0, 204, 136, 0.12);
+            animation-delay: 3s;
+        }
+
+        .orb-8 {
+            bottom: 25%;
+            right: 15%;
+            background: rgba(255, 215, 0, 0.15);
+            animation-delay: 3.5s;
+        }
+
+        @keyframes pulseOrb {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1.3);
+                opacity: 0.6;
+            }
         }
 
         .container {
@@ -42,13 +188,14 @@
         }
 
         .header {
-            background: var(--darker-bg);
+            background: rgba(10, 10, 10, 0.8);
             padding: 1.5rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
         }
 
         .nav {
@@ -61,6 +208,7 @@
             font-size: 1.8rem;
             font-weight: 600;
             color: var(--accent);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
         }
 
         .hero {
@@ -69,14 +217,15 @@
         }
 
         .hero-title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
             color: var(--text-primary);
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto 3rem;
@@ -85,20 +234,24 @@
 
         .download-section {
             background: var(--card-bg);
-            padding: 2rem;
+            padding: 2.5rem;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 12px;
             margin: 2rem auto;
             position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
         }
 
         .download-warning {
             background: linear-gradient(135deg, rgba(255, 170, 0, 0.15), rgba(255, 68, 68, 0.1));
             border: 1px solid var(--warning);
-            border-radius: 6px;
-            padding: 1rem;
+            border-radius: 8px;
+            padding: 1.2rem;
             margin-bottom: 1.5rem;
             text-align: center;
+            backdrop-filter: blur(5px);
         }
 
         .download-warning h3 {
@@ -121,18 +274,81 @@
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #0099cc);
             color: #000;
             text-decoration: none;
-            padding: 1rem 2rem;
-            border-radius: 6px;
-            font-size: 1rem;
+            padding: 1.2rem 2.5rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
             font-weight: 500;
-            transition: background-color 0.2s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
         }
 
         .download-btn:hover {
-            background: #00b8e6;
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 25px rgba(0, 212, 255, 0.5),
+                0 0 30px rgba(255, 221, 0, 0.4);
+            background: linear-gradient(135deg, var(--lemon), #ffed4e);
+        }
+
+        .download-btn:hover::before {
+            animation: shine 1.5s ease;
+            opacity: 1;
+        }
+
+        @keyframes shine {
+            0% { left: -50%; }
+            100% { left: 150%; }
+        }
+
+        .download-btn:hover .fa-download {
+            transform: scale(1.2) rotate(360deg);
+            color: #000;
+        }
+
+        .fa-download {
+            transition: all 0.5s ease;
+        }
+
+        .download-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            border-left: 3px solid var(--success);
+        }
+
+        .download-count {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--success);
+            text-shadow: 0 0 10px rgba(0, 204, 136, 0.3);
+        }
+
+        .download-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
         .file-info {
@@ -140,8 +356,8 @@
             font-size: 0.9rem;
             margin: 1.5rem 0;
             padding: 1rem;
-            background: var(--darker-bg);
-            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
             border-left: 3px solid var(--accent);
         }
 
@@ -150,9 +366,9 @@
         }
 
         .info-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             color: var(--accent);
             display: flex;
             align-items: center;
@@ -161,15 +377,17 @@
 
         .info-content {
             background: var(--card-bg);
-            padding: 1.5rem;
+            padding: 2rem;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
         }
 
         .info-content p {
             margin-bottom: 1rem;
             color: var(--text-secondary);
+            line-height: 1.7;
         }
 
         .info-content ul {
@@ -179,90 +397,128 @@
         }
 
         .info-content li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
         }
 
         .warning {
             background: rgba(255, 170, 0, 0.1);
             border-left: 4px solid var(--warning);
-            padding: 1rem;
-            margin: 1rem 0;
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 4px;
         }
 
         .danger {
             background: rgba(255, 68, 68, 0.1);
             border-left: 4px solid var(--danger);
-            padding: 1rem;
-            margin: 1rem 0;
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 4px;
         }
 
         .features {
-            padding: 3rem 0;
+            padding: 4rem 0;
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 600;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             color: var(--text-primary);
             text-align: center;
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
         }
 
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .feature-card {
             background: var(--card-bg);
-            padding: 1.5rem;
+            padding: 2rem;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
 
         .feature-icon {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
         }
 
         .feature-title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 500;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             color: var(--text-primary);
         }
 
         .feature-desc {
             color: var(--text-secondary);
             font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .footer {
-            background: var(--darker-bg);
+            background: rgba(10, 10, 10, 0.8);
             padding: 3rem 0 2rem;
             text-align: center;
             border-top: 1px solid var(--border-color);
-            margin-top: 3rem;
+            margin-top: 4rem;
+            backdrop-filter: blur(10px);
         }
 
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .container {
-                padding: 0 1rem;
+                padding: 0 1.5rem;
             }
             
             .features-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .download-section {
+                padding: 2rem;
+            }
+            
+            .download-stats {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="background-effects">
+        <div class="gradient-bg"></div>
+        <div class="floating-lemons" id="floatingLemons"></div>
+        <div class="grid-lines"></div>
+        <div class="glowing-orbs orb-1"></div>
+        <div class="glowing-orbs orb-2"></div>
+        <div class="glowing-orbs orb-3"></div>
+        <div class="glowing-orbs orb-4"></div>
+        <div class="glowing-orbs orb-5"></div>
+        <div class="glowing-orbs orb-6"></div>
+        <div class="glowing-orbs orb-7"></div>
+        <div class="glowing-orbs orb-8"></div>
+    </div>
+
     <header class="header">
         <div class="container">
             <nav class="nav">
@@ -295,6 +551,11 @@
                     <i class="fas fa-download"></i>
                     Скачать Lemon-Checkers
                 </a>
+
+                <div class="download-stats">
+                    <span class="download-count">2,410</span>
+                    <span class="download-label">загрузок</span>
+                </div>
                 
                 <div class="file-info">
                     <i class="fas fa-info-circle"></i>
@@ -330,7 +591,7 @@
                     <li><strong>Исполняемый файл</strong> - .exe файлы всегда вызывают подозрения</li>
                     <li><strong>Неизвестный источник</strong> - файл не имеет массового распространения</li>
                     <li><strong>Политика безопасности</strong> - защита от случайных загрузок</li>
-                    <li><strong>Отсутствие цифровой подписи</strong> - дорогостоящий сертификат</li>
+                    <li><strong>Отсутствие цифровой подписи</strong> - дорогостоячный сертификат</li>
                 </ul>
 
                 <div class="danger">
@@ -411,5 +672,28 @@
             </p>
         </div>
     </footer>
+
+    <script>
+        // Создание плавающих лимонов
+        function createLemons() {
+            const container = document.getElementById('floatingLemons');
+            for (let i = 0; i < 12; i++) {
+                const lemon = document.createElement('div');
+                lemon.className = 'lemon-float';
+                lemon.innerHTML = '🍋';
+                
+                lemon.style.left = Math.random() * 100 + '%';
+                lemon.style.animationDelay = Math.random() * 20 + 's';
+                lemon.style.animationDuration = 15 + Math.random() * 15 + 's';
+                
+                container.appendChild(lemon);
+            }
+        }
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            createLemons();
+        });
+    </script>
 </body>
 </html>
